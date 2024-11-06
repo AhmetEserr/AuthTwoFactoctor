@@ -1,0 +1,22 @@
+﻿@model TwoFactorAuthApp.Models.EnableAuthenticatorViewModel
+
+@{
+    ViewData["Title"] = "Authenticator Uygulamasını Etkinleştir";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>Authenticator uygulamanızı taramak için aşağıdaki QR kodunu kullanın veya anahtarı manuel olarak girin.</p>
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?data=@Model.AuthenticatorUri&size=200x200" alt="QR Code" />
+
+<p><strong>Anahtar:</strong> @Model.SharedKey</p>
+
+<form asp-action="EnableAuthenticator" method="post">
+    <div class="form-group">
+        <label asp-for="Code"></label>
+        <input asp-for="Code" class="form-control" />
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Doğrulama Kodu Doğrula</button>
+</form>

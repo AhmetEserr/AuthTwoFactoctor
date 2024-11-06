@@ -1,0 +1,23 @@
+﻿@model TwoFactorAuthApp.Models.TwoFactorAuthenticationViewModel
+
+@{
+    ViewData["Title"] = "İki Adımlı Doğrulama";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model.Is2faEnabled)
+{
+    <p>İki adımlı doğrulama etkinleştirildi.</p>
+}
+else
+{
+    <p>İki adımlı doğrulama etkinleştirilmedi.</p>
+    <a asp-action="EnableAuthenticator" class="btn btn-primary">Authenticator Etkinleştir</a>
+}
+
+@if (Model.RecoveryCodesLeft > 0)
+{
+    <p>Kurtarma kodunuz var: @Model.RecoveryCodesLeft adet kurtarma kodunuz kaldı.</p>
+    <!-- Kurtarma kodlarını gösterme veya yenileme seçenekleri ekleyebilirsiniz -->
+}
